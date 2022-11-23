@@ -1,16 +1,16 @@
-# pract2
+ПРАКТИЧЕСКАЯ РАБОТА №2
 
-A new Flutter project.
 
-## Getting Started
+Цель работы: реализовать класс, который отвечает за базу данных. Реализовать таблицы для предметной области "Магазин велосипедов".
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Ход работы:
+В начале работы в файл pubspec.yaml были добавлены библиотеки для работы с базой данных. Библиотека sqflite_common_ffi – используется для взаимодействия с БД на Windows, Linux, MacOS. Библиотека sqflite используется для взаимодействия с БД на других платформах.
+В файле main.dart в классе MyApp в методе main был вызван метод инициализации базы данных, который находится в классе DataBaseHepler. Данный класс реализован по паттерну singltone и содержит методы и события, отвечающие за создание, удаление таблиц БД, а также их заполнение данными.
+В ходе работы использовались следующие классы:
+1)	DataBaseRequest – данный класс хранит константы запросов на создание таблиц, а также список с названиями создаваемых таблиц.
+2)	DataBaseHelper – класс отвечает за инициализацию БД и создание таблиц.
+3)	Directory – класс отвечает за работу с директориями.
+4)	Database – класс базы данных.
+Также, на каждую таблицу были созданы модели. Модели наследуются от сущностей, которые хранят в себе колонки таблиц. В моделях реализованы методы, которые отвечают за конвертацию данных в JSON формат.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
