@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pract2/data/repository/auth_repository_impl.dart';
+import 'package:pract2/domain/usercases/auth.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -114,5 +116,22 @@ class _signUpState extends State<SignUp> {
     );
   }
 
-  signUp() {}
+  void signUp() async {
+    final AuthRepositoryImpl auth = AuthRepositoryImpl();
+
+    var result = await Auth(auth).signUp(AuthParams(
+      login: _loginController.text,
+      password: _passwordController.text,
+    ));
+
+    result.fold((l) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l.errorMessage),
+        ),
+      );
+    }, (r) {
+      Navigator.pushNamed(context, 'sign_in');
+    });
+  }
 }

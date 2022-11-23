@@ -21,7 +21,7 @@ class _homeState extends State<AdminHome> {
               height: 45,
               child: Center(
                   child: Text(
-                "User panel",
+                "Admin panel",
                 style: TextStyle(color: Colors.white),
               )),
             ),
