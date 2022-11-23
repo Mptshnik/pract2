@@ -9,6 +9,11 @@ abstract class DatabaseRequest {
   static const String tableOrder = 'order';
   static const String tableOrderItem = 'order_item';
 
+  static String select(String table) => 'Select * from $table';
+
+  static String selectName(String table, List<String> test) =>
+      'Select ${test.toString().replaceAll('[', '').replaceAll(']', '')} from $table';
+
   static String deleteTable(String table) => 'DROP TABLE $table';
 
   static const List<String> tableList = [

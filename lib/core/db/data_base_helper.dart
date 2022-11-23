@@ -51,6 +51,8 @@ class DataBaseHepler {
         await db.execute(DatabaseRequest.deleteTable(element));
       }
     }
+
+    await onInitTable(db);
   }
 
   Future<void> onInitTable(Database db) async {
@@ -58,18 +60,22 @@ class DataBaseHepler {
       for (var element in RoleEnum.values) {
         db.insert(DatabaseRequest.tableRole, Role(name: element.name).toMap());
       }
+      db.insert(
+          DatabaseRequest.tableUser,
+          User(
+                  login: 'Admin123!',
+                  idRole: RoleEnum.admin,
+                  password: 'Qwerty123!')
+              .toMap());
     } on DatabaseException catch (error) {}
-
-    db.insert(
-        DatabaseRequest.tableUser,
-        User(login: 'admшn', idRole: RoleEnum.admin, password: 'qwerty')
-            .toMap());
   }
 
   Future<void> onCreateTable(Database db) async {
     for (var tableCreate in DatabaseRequest.tableCreateList) {
       await db.execute(tableCreate);
     }
+
+    await onInitTable(db);
   }
 
   Future<void> onDropDatabase() async {
